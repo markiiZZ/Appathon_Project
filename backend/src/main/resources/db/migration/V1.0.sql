@@ -1,4 +1,4 @@
-DROP TABLE Libraries;
+SET SQL_MODE='ALLOW_INVALID_DATES';
 
 create table Libraries (
   City varchar(255),
@@ -10,4 +10,7 @@ create table Libraries (
   primary key(City, Name)
 );
 
-create index a on Libraries(Name, City);
+CREATE UNIQUE INDEX a 
+  ON Libraries (City, Name);
+
+

@@ -1,0 +1,76 @@
+// Apply the java plugin to add support for Java
+plugins {
+    id 'java'                       //for java project
+    id 'war'                        //for generating war (web app archive) files
+    id 'org.gretty' version '3.0.1' //web app development plugin
+    id 'org.akhikhl.gretty' version '2.0.0'
+    id 'org.flywaydb.flyway' version '6.0.8'
+    id 'groovy'
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use 'jcenter' for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+    mavenCentral()
+
+    maven {
+        url "https://maven.restlet.talend.com/"
+    }
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    // The production code uses the SLF4J logging API at compile time
+    implementation localGroovy()
+    compile "javax.servlet:javax.servlet-api:3.1.0"          //the Java servlet libraries
+    compile group: 'org.restlet.jse', name: 'org.restlet.ext.json', version: '2.4.0'
+    compile "org.restlet.jee:org.restlet:2.4.2"              //for writing RESTful APIs
+    compile "com.google.code.gson:gson:2.8.2"                //json library
+    compile "org.apache.commons:commons-dbcp2:2.7.0"         //db connection pool
+    compile "org.springframework:spring-jdbc:5.2.2.RELEASE"  //spring JDBC classes
+    compile "org.flywaydb:flyway-core:6.0.1"
+    compile "org.slf4j:slf4j-api:1.7.25"
+    compile "org.slf4j:slf4j-log4j12:1.7.25"
+    compile "log4j:log4j:1.2.17"
+    //testCompile 'org.codehaus.groovy:groovy-all:2.4.11'
+    compile group:'commons-fileupload', name: 'commons-fileupload', version: '1.3'
+    compile group: 'org.restlet.jee', name: 'org.restlet.ext.fileupload', version: '2.3.4'
+    compile group: 'com.opencsv', name: 'opencsv', version: '4.6'
+
+    providedRuntime "javax.servlet:javax.servlet-api:3.1.0"  //provided by the servlet container at runtime
+
+    runtime "org.restlet.jee:org.restlet.ext.servlet:2.4.2"  //Servlet adapter for Restlet framework
+
+    runtime "mysql:mysql-connector-java:8.0.18"              //the MySQL JDBC driver
+
+    gretty "mysql:mysql-connector-java:8.0.18"               //make sure it is also available to the grety plugin
+    grettyRunnerJetty94 group: 'org.eclipse.jetty', name: 'jetty-runner', version: '9.4.19.v20190610'
+    // Declare the dependency for your favourite test framework you want to use in your tests.
+    // TestNG is also supported by the Gradle Test task. Just change the
+    // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
+    // 'test.useTestNG()' to your build script.
+//    testCompile 'junit:junit:4.12'
+}
+
+gretty {
+
+    httpEnabled = true
+    httpsEnabled = false
+    httpPort = 8080
+    httpsPort = 8080
+    contextPath = ''
+}
+
+flyway {
+        url = 'jdbc:mysql://127.0.0.1:3306/'
+        user = 'nikoleta'
+        password = 'nikoleta'
+        schemas = ['Library']
+        placeholders = ['Nonesense':'Boogus']
+}
+
