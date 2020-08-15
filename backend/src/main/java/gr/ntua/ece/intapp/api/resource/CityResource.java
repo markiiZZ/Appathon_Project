@@ -32,6 +32,7 @@ public class CityResource extends ServerResource {
         if( city==null ) throw new ResourceException(400,"Bad request");
         Optional<List<Cities>> opt = dataAccess.fetchlibrary(city);
         if(opt.isPresent()){
+          System.out.println("oxi keni");
           return new JsonMapRepresentation(Map.of("LibrariesList",opt.get()));
         }else{
           throw new ResourceException(400,"Bad request");

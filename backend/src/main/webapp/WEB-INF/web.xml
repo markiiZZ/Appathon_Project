@@ -6,12 +6,12 @@
          version="3.1"
          metadata-complete="true">
 
-    <display-name>Energy App</display-name>
-    <description>Energy App description</description>
+    <display-name>Library App</display-name>
+    <description>Library App description</description>
 
     <context-param>
         <param-name>properties</param-name>
-        <param-value>/gr/ntua/ece/softeng19b/app.properties</param-value>
+        <param-value>/gr/ntua/ece/intapp/app.properties</param-value>
     </context-param>
 
     <!-- //////// -->
@@ -24,7 +24,7 @@
         <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
         <init-param>
             <param-name>org.restlet.application</param-name>
-            <param-value>gr.ntua.ece.softeng19b.api.RestfulApp</param-value>
+            <param-value>gr.ntua.ece.intapp.api.RestfulApp</param-value>
         </init-param>
     </servlet>
 
@@ -35,12 +35,12 @@
     <servlet-mapping>
         <!-- Map the Restlet endpoints to /energy/api URL -->
         <servlet-name>RestletAdapter</servlet-name>
-        <url-pattern>/energy/api/*</url-pattern>
+        <url-pattern>/library/api/*</url-pattern>
     </servlet-mapping>
 
 
     <listener>
-        <listener-class>gr.ntua.ece.softeng19b.conf.Listener</listener-class>
+        <listener-class>gr.ntua.ece.intapp.conf.Listener</listener-class>
     </listener>
 
 </web-app>

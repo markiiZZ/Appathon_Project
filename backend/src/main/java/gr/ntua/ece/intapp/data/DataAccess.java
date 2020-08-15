@@ -66,14 +66,16 @@ public class DataAccess {
 
 
     public Optional<List<Cities>> fetchlibrary(String city){
-      String sqlQuery="select name "+
+      System.out.println("data access");
+      String sqlQuery="select Name "+
                       "from Libraries"+
-                      " where city like ? ";
+                      " where City like ? ";
       Object[] sqlParams = new Object[]{
         "%"+city+"%"
       };
       try{
         List<Cities> tmp = jdbcTemplate.query(sqlQuery, sqlParams,new CitiesMapper());
+        System.out.println("geia query");
         return Optional.of(tmp);
       }catch(NoSuchElementException e){
         System.out.println("oops no city");
