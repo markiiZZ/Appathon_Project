@@ -18,9 +18,9 @@ public class RestfulApp extends Application {
  public synchronized Restlet createInboundRoot(){
 
    Router router = new Router(getContext());
-   //Paths
-   //we only need one
+
    router.attach("/Cities",CityResource.class);
+   router.attach("/Libraries", LibraryResource.class);
 
    CorsFilter corsFilter = new CorsFilter(getContext(), router);
    corsFilter.setAllowedOrigins(Set.of("*"));
