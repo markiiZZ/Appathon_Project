@@ -21,6 +21,7 @@ public class RestfulApp extends Application {
 
    router.attach("/Cities",CityResource.class);
    router.attach("/Libraries", LibraryResource.class);
+   router.attach("/LibrariesInCities", LibCityResource.class);
 
    CorsFilter corsFilter = new CorsFilter(getContext(), router);
    corsFilter.setAllowedOrigins(Set.of("*"));

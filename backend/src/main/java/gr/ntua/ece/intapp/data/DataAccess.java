@@ -103,4 +103,43 @@ public class DataAccess {
         return Optional.empty();
       }
     }
+
+
+
+    public Optional<List<LibCities>> fetchcitiesall(String libcity){
+      System.out.println("data access lib");
+      String sqlQuery="select City , COUNT(*) as libraries "+
+                      "from Libraries"+
+                      " where City like ? " + "group by City";
+                      System.out.println(libcity);
+
+      if(Objects.equals(libcity, new String("ALL CITIES"))){
+      Object[] sqlParams = new Object[]{
+        "%%"
+      };
+      System.out.println("kalo");
+      try{
+        List<LibCities> tmp = jdbcTemplate.query(sqlQuery, sqlParams,new LibCitiesMapper());
+        System.out.println("all query");
+        return Optional.of(tmp);
+      }catch(NoSuchElementException e){
+        System.out.println("oops no library");
+        return Optional.empty();
+      }
+    }else{
+      Object[] sqlParams = new Object[]{
+        "%" + libcity + "%"
+      };
+
+      try{
+        List<LibCities> tmp = jdbcTemplate.query(sqlQuery, sqlParams,new LibCitiesMapper());
+        System.out.println("geia query");
+        return Optional.of(tmp);
+      }catch(NoSuchElementException e){
+        System.out.println("oops no library");
+        return Optional.empty();
+      }
+    }
+    }
+
   }
