@@ -23,11 +23,11 @@ public class CityResource extends ServerResource {
     private final DataAccess dataAccess = Configuration.getInstance().getDataAccess();
 
     @Override
-    protected Representation get () throws ResourceException {
+    protected Representation post (Representation entity) throws ResourceException {
         //Create a new restlet form
-
+        Form form = new Form(entity);
         Series headers =(Series) getRequestAttributes().get("org.restlet.http.headers");
-        String city = headers.getFirstValue("city");
+        String city = form.getFirstValue("city");
         System.out.println(city);
         if( city==null ) throw new ResourceException(400,"Bad request");
         Optional<List<Cities>> opt = dataAccess.fetchlibrary(city);
