@@ -94,8 +94,8 @@ class Search extends Component {
 	      <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
 
         <ul id="nav" className="nav">
-           <li className="current"><a type = "button" className="smoothscroll" onClick = {this.setRedirect1}>Home</a></li>
-          <li><a  type = "button" className="smoothscroll" onClick = {this.setRedirect2}>Search</a></li>
+           <li className="current"><a type = "button" className="smoothscroll" href = '#' onClick = {this.setRedirect1}>Home</a></li>
+          <li><a  type = "button" className="smoothscroll" href = '#' onClick = {this.setRedirect2}>Search</a></li>
         </ul>
       </nav>
 

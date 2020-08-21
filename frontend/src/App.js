@@ -40,10 +40,11 @@ class App extends Component {
 
   render() {
     return (
-
-
       <BrowserRouter>
     <div>
+
+    
+
         <Navbar/>
         <Switch>
             <Route exact path="/" component={Header}/>

@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import ReactDOM from 'react-dom';
 import Results1 from './Results1';
-
+import {Redirect} from 'react-router-dom';
 
 class Search1 extends Component {
   componentDidMount() {
@@ -14,10 +14,35 @@ class Search1 extends Component {
       city: '',
       isSub: false,
       Data: [],
+      redirect1: false,
+      redirect2: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+
+    setRedirect2 = () => {
+      this.setState({
+        redirect2: true
+      })
+    }
+    renderRedirect2 = () => {
+      if (this.state.redirect2) {
+        return <Redirect to='/search' />
+      }
+    }
+
+    setRedirect1 = () => {
+      this.setState({
+        redirect1: true
+      })
+    }
+    renderRedirect1 = () => {
+      if (this.state.redirect1) {
+        return <Redirect to='/' />
+      }
+    }
 
 
   getData = () => {
@@ -62,7 +87,23 @@ class Search1 extends Component {
 
   render() {
     return (
+
+
+
       <section id="search" >
+      {this.renderRedirect1()}
+      {this.renderRedirect2()}
+
+      <nav id="nav-wrap">
+         <a className="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+	      <a className="mobile-btn" href="#home" title="Hide navigation">Hide navigation</a>
+
+        <ul id="nav" className="nav">
+           <li className="current"><a type = "button" className="smoothscroll" href = '#' onClick = {this.setRedirect1}>Home</a></li>
+          <li><a  type = "button" className="smoothscroll" href = '#' onClick = {this.setRedirect2}>Search</a></li>
+        </ul>
+      </nav>
+
       <div className="row education">
       <div className="three columns header-col">
         <h1><span>Find a city's libraries</span></h1>

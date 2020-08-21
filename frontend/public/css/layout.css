@@ -144,6 +144,8 @@ header .scrolldown a:hover { color: #0762f9; }
 ul#nav {
    min-height: 48px;
    width: auto;
+   background-color: #000;
+   color: #FF7F00;
 
    /* center align the menu */
    text-align: center;
@@ -258,7 +260,7 @@ ul#nav li.current a { color: #fe6928; }
 
 #search thead {
   text-align: left;
-  
+
    font: 18px/24px 'opensans-bold', sans-serif;;
    letter-spacing: 1px;
    color: #000;

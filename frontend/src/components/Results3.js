@@ -24,23 +24,16 @@ class Results3 extends Component {
           <table >
             <thead className="thead-dark">
               <tr>
-                <th scope="col">Library </th>
-                <th scope="col">City</th>
-                <th scope="col">Address</th>
-                <th scope="col">Postcode</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Website</th>
+                <th scope="col">City </th>
+                <th scope="col">LIbraries</th>
+
               </tr>
             </thead>
             <tbody>
             {Object.values(this.props.results3)[0].map(item => (
               <tr key={shortid.generate()}>
-                <td>{item.name}</td>
-                <td>{item.city}</td>
-                <td>{item.address}</td>
-                <td>{item.postcode}</td>
-                <td>{item.email}</td>
-                <td>{item.website}</td>
+                <td>{item.cityname}</td>
+                <td>{item.libraries}</td>
               </tr>
             ))}
             </tbody>
